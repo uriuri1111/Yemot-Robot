@@ -1,0 +1,27 @@
+name: Yemot Robot Auto Run
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # קוד שמגדיר ריצה כל 5 דקות
+  workflow_dispatch: # כפתור להפעלה ידנית
+
+jobs:
+  run-robot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch code
+        uses: actions/checkout@v3
+        
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install Requests tool
+        run: pip install requests
+        
+      - name: Run the Robot
+        env:
+          YEMOT_USERNAME: ${{ secrets.YEMOT_USERNAME }}
+          YEMOT_PASSWORD: ${{ secrets.YEMOT_PASSWORD }}
+        run: python robot.py
