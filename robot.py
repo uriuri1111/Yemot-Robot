@@ -35,8 +35,8 @@ def check_and_move():
     except Exception:
         pass
 
-# הרובוט מתעורר ומבצע 9 בדיקות (כל 30 שניות) לאורך 4.5 דקות סה"כ
-for i in range(9):
+# הרובוט נשאר ער כ-55 דקות ברצף, ובודק הודעות כל חצי דקה!
+for i in range(110):
     check_and_move()
-    if i < 8: # בפעם האחרונה אין צורך לישון, כי הרובוט מסיים
+    if i < 109: 
         time.sleep(30)
